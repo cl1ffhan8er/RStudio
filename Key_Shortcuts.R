@@ -1,0 +1,4 @@
+#Run the ENTIRE PROGRAM
+  CTRL + ALT + R
+#Run only ONE LINE 
+  CTRL + ENTER
