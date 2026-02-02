@@ -1,0 +1,7 @@
+
+```{r}
+setwd("C:/Users/cliff/OneDrive/Desktop/RStudio/csv");
+Edata = read.csv("employee_data.csv")
+Edata
+```
+

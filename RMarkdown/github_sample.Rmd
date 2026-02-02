@@ -1,0 +1,33 @@
+---
+title: "My R Markdown Document"
+author: "Your Name"
+date: "2023-04-01"
+output: pdf_document
+---
+
+## Introduction
+
+In this document, we will generate a scatterplot
+of the `mpg` and `wt` variables in the `mtcars`
+dataset using R.
+
+## Loading Data
+
+We will begin by loading the `mtcars` dataset into R:
+
+```{r}
+data(mtcars)
+head(mtcars)
+```
+
+## Plotting Data
+
+
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  xlab("Weight (1000 lbs)") +
+  ylab("Miles per Gallon") +
+  ggtitle("Scatterplot of Weight and MPG")
+```

@@ -3,15 +3,21 @@ numbers = c(1,2,3,4,5)
 
 #Sum
 sum = sum(numbers)
-print(paste("Sum of Numbers:", sum))
+#print(paste("Sum of Numbers:", sum))
 
 #Mean
 mean = mean(numbers)
-print(paste("Mean of Numbers:", mean))
+#print(paste("Mean of Numbers:", mean))
 
 #Standard Deviation
-standard_deviation = sd(numbers)
-print(paste("Standard Deviation of Numbers:", round(standard_deviation,3)))
+sd(numbers)
+#print(paste("Standard Deviation of Numbers:", round(standard_deviation,3)))
+
+#Variance
+var(numbers)
+
+#Boxplot
+boxplot(numbers)
 
 #Max/Min
 print(paste("Maximum of Numbers:", max(numbers)))

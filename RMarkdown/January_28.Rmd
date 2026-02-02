@@ -1,0 +1,72 @@
+---
+title: "January 28 Activity"
+author: "Cliff Jao"
+date: "Class Group 1 and CS 3203N"
+output: html_document
+---
+
+#Part 1: Load Data 
+a. Check the first 6 rows and identify the missing values
+```{r}
+setwd("C:/Users/cliff/OneDrive/Desktop/RStudio/csv")
+Edata = read.csv("employee_data.csv")
+Edata
+head(Edata, 6) %>% filter(is.na(Performance))
+```
+
+#Part 2: Select and Filter
+```{r}
+library(dplyr)
+#a. Select only the column Name, Department, and Salary
+data.frame(Name=Edata$Name, Department=Edata$Department, Salary=Edata$Salary)
+#b. Filter Employees with a Salary greater than 55,000
+filter(Edata, Salary > 55000)
+```
+
+
+#Part 3: Mutate and Arrange
+a. Create a new column Seniority based on YearsWorked
+```{r}
+Edata %>% mutate(Senior = YearsWorked > 5)
+```
+b. Arrange employees by Performance descending
+```{r}
+Edata %>% arrange(desc(Performance))
+```
+c. Describe the last output
+
+
+#Part 4: Grouped Operations
+a. Calculate average salary by Department
+```{r}
+Edata %>% group_by(Department) %>% summarise(MeanSalary = mean(Salary))
+```
+b. Count the number of employees per Department
+```{r}
+Edata %>% group_by(Department) %>% summarise(Frequency = n_distinct(Name))
+```
+c. Which department has the highest average salary? Which department has the most employees?
+```{r}
+head(Edata %>% group_by(Department) %>% summarise(MeanSalary = mean(Salary)) %>% arrange(desc(MeanSalary)),1)
+#The department with the highest average salary is IT with 61333.33 ~
+head(Edata %>% group_by(Department) %>% summarise(Frequency = n_distinct(Name)) %>% arrange(desc(Frequency)),1)
+#IT and Sales Department
+```
+
+## Part 5: Handling Missing Values
+a. Check for missing values in Performance
+```{r}
+Edata %>% filter(is.na(Performance))
+```
+b. Remove rows with missing Performance
+```{r}
+Edata %>% filter(!is.na(Performance))
+```
+c. Replace missing Performance values with 3 (neutral rating)
+```{r}
+Edata %>% mutate(Performance = ifelse(is.na(Performance),3,Performance)) 
+```
+d. How many missing Performance values were there?
+There are 2 Rows where missing performance were missing often called NA.
+e. Did replacing them change the average performance rating?
+Yes, because NA are often excluded from mathematical calculations thus changing them to 3 greatly affected the average perfomance rating in the datasheet
